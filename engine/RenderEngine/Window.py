@@ -2,10 +2,7 @@
 import pygame
 import os
 import sys
-
-_window_width   = None
-_window_height  = None
-_window_surface = None
+import engine
 
 class Window (object):
 
@@ -34,9 +31,9 @@ class Window (object):
         self._surface = pygame.display.set_mode((self._width, self._height))
         self.SetTitle(self._title)
 
-        _window_width   = self._width
-        _window_height  = self._height
-        _window_surface = self._surface
+        engine._window_width   = self._width
+        engine._window_height  = self._height
+        engine._window_surface = self._surface
 
     def SetOptions(self, kwargs) -> None:
         # "_" + key, исользую потому что я все локальные переменные класса
