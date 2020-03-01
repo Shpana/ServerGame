@@ -4,10 +4,10 @@ from engine.EntryPoint.EntryPoint       import StartApplication
 from engine.EntryPoint.Application      import Application
 
 # Render Engine
-_current_scene = None
-from engine.RenderEngine.Window         import _window_width
-from engine.RenderEngine.Window         import _window_height
-from engine.RenderEngine.Window         import _window_surface
+_current_scene  = None
+_window_width   = None
+_window_height  = None
+_window_surface = None
 from engine.RenderEngine.Window         import Window
 from engine.RenderEngine.SceneFactory   import SceneFactory
 from engine.RenderEngine.Scene          import Scene
