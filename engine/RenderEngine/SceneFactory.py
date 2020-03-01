@@ -1,4 +1,5 @@
 
+import engine
 
 class SceneFactory ():
 
@@ -6,12 +7,10 @@ class SceneFactory ():
         self._scenes = dict()
 
     def Update(self) -> None:
-        from engine import _current_scene
-        self._scenes[_current_scene].Update()
+        self._scenes[engine._current_scene].Update()
 
     def Render(self) -> None:
-        from engine import _current_scene
-        self._scenes[_current_scene].Render()
+        self._scenes[engine._current_scene].Render()
 
     def PushScene(self, name, scene) -> None:
         self._scenes[name] = scene
@@ -20,5 +19,6 @@ class SceneFactory ():
         self._scenes.pop(name)
 
     def SetCurrentScene(self, name) -> None:
-        from engine import _current_scene
-        _current_scene = name
+        self._scenes[engine._current_scene].Off() if engine._current_scene else None
+        engine._current_scene = name
+        self._scenes[engine._current_scene].On()
