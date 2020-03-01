@@ -1,4 +1,7 @@
 
+import pygame
+pygame.font.init()
+
 # Entry Point
 from engine.EntryPoint.EntryPoint       import StartApplication
 from engine.EntryPoint.Application      import Application
@@ -19,3 +22,6 @@ from engine.Utils.Matrix                import Matrix
 _events = dict()
 from engine.Events.EventsEmmiter        import EventsEmmiter
 from engine.Events.EventsListener       import EventsListener
+
+# GUI
+from engine.Gui.Label                   import Label

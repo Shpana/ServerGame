@@ -1,4 +1,6 @@
 
+import sys
+
 class Application ():
 
     def __init__(self):
@@ -15,6 +17,7 @@ class Application ():
 
     def Close(self) -> None:
         self._running = False
+        sys.exit()
 
     def Start(self) -> None:
         while (self._running):
