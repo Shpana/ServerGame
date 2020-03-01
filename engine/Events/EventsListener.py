@@ -14,7 +14,7 @@ class EventsListener ():
                 if (event.key in _events): EventsEmmiter().Emit(event.key)
 
             if (event.type == pygame.KEYDOWN):
-                if (event.key in _events): EventsEmmiter().Emit(event.key)
+                if (event.key in _events): EventsEmmiter().Emit(event.key)            
 
     @staticmethod
     def ClearEvents() -> None:

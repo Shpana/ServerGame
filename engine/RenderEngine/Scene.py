@@ -1,7 +1,7 @@
 
 class Scene ():
 
-    def On(self) -> None:
+    def Enable(self) -> None:
         pass
 
     def Update(self) -> None:
@@ -10,5 +10,5 @@ class Scene ():
     def Render(self) -> None:
         pass
 
-    def Off(self) -> None:
+    def Disable(self) -> None:
         pass

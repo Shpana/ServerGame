@@ -29,6 +29,7 @@ class Window (object):
     def Create(self) -> None:
         if (self._center_align): os.environ["SDL_VIDEO_CENTERED"] = "1"
         self._surface = pygame.display.set_mode((self._width, self._height))
+        self._surface.set_alpha(255)
         self.SetTitle(self._title)
 
         engine._window_width   = self._width

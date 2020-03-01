@@ -19,6 +19,6 @@ class SceneFactory ():
         self._scenes.pop(name)
 
     def SetCurrentScene(self, name) -> None:
-        self._scenes[engine._current_scene].Off() if engine._current_scene else None
+        self._scenes[engine._current_scene].Disable() if engine._current_scene else None
         engine._current_scene = name
-        self._scenes[engine._current_scene].On()
+        self._scenes[engine._current_scene].Enable()

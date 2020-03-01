@@ -1,6 +1,6 @@
 
-import pygame
 import engine
+import pygame
 
 class Label (object):
 
@@ -10,7 +10,7 @@ class Label (object):
         self._text       = "Label"
         self._text_color = (150, 150, 255)
         self._font_name  = "Consolas"
-        self._font_size  = 30
+        self._font_size  = 15
         self._font_object = None
         self._text_object = None
         self.SetOptions(kwargs)
