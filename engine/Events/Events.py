@@ -1,2 +1,0 @@
-
-_events = dict()
