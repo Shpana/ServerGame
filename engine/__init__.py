@@ -31,5 +31,7 @@ from engine.Events.Events               import Init
 # GUI
 from engine.Gui.Widget                  import Widget
 from engine.Gui.Button                  import Button
+from engine.Gui.Label                   import Label
+from engine.Gui.Checkbox                import Checkbox
 
 Init()
