@@ -2,13 +2,13 @@
 import pygame
 pygame.font.init()
 
-_mouse_pressed  = False
-# TODO: Events Variables
-_current_scene  = None
-_window_width   = None
-_window_height  = None
-_window_surface = None
-_events         = dict()
+_mouse_pressed    = False
+_key_pressed      = False
+_current_scene    = None
+_window_width     = None
+_window_height    = None
+_window_surface   = None
+_events           = dict()
 
 # Entry Point
 from engine.EntryPoint.EntryPoint       import StartApplication
@@ -29,7 +29,7 @@ from engine.Events.EventsListener       import EventsListener
 from engine.Events.Events               import Init
 
 # GUI
-from engine.Gui.Label                   import Label
+from engine.Gui.Widget                  import Widget
 from engine.Gui.Button                  import Button
 
 Init()

@@ -6,7 +6,7 @@ class Application ():
     def __init__(self):
         self._running = True
 
-    def Create(self) -> None:
+    def Start(self) -> None:
         pass
 
     def Update(self) -> None:
@@ -19,7 +19,8 @@ class Application ():
         self._running = False
         sys.exit()
 
-    def Start(self) -> None:
+    def Run(self) -> None:
+        self.Start()
         while (self._running):
             self.Update()
             self.Render()
