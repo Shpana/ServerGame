@@ -54,4 +54,4 @@ class Button (engine.Widget):
     def DoCallback(self) -> None:
         self._callback[0](*self._callback[1])
         self._is_ready = False
-        time.sleep(0.1)
+        time.sleep(0.09)

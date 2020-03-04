@@ -20,4 +20,4 @@ class Label (engine.Widget):
 
     def SetTextStyle(self) -> None:
         self._font_object = pygame.font.SysFont(self._font_name, self._font_size)
-        self._text_object = self._font_object.render(self._text, 1, self._text_color)
+        self._text_object = self._font_object.render(self._text, 1, self._text_color)    

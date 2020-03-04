@@ -26,7 +26,7 @@ class Checkbox (engine.Widget):
 
     def Render(self) -> None:
         if (self._checked): pygame.draw.rect(engine._window_surface, self._color, self._rect)
-        else: pygame.draw.rect(engine._window_surface, self._color, self._rect, 1)
+        else: pygame.draw.rect(engine._window_surface, self._color, self._rect, 2)
 
     def ToggleChecked(self) -> None:
         self._checked = not self._checked
