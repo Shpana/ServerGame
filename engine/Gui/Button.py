@@ -1,6 +1,7 @@
 
 import engine
 import pygame
+import time
 
 class Button (engine.Widget):
 
@@ -19,7 +20,7 @@ class Button (engine.Widget):
         self._is_pressed = False
         self._is_ready   = True
         self._rect       = None
-        self._callback   = [0, []]
+        self._callback   = [print, []]
         self._current_color = self._color
         self.SetRectangle()
 
@@ -35,7 +36,7 @@ class Button (engine.Widget):
         pygame.draw.rect(engine._window_surface, self._current_color, self._rect)
         self._label.Render()
 
-    def BindFunction(self, func, args = []) -> None:
+    def BindCallback(self, func, args = []) -> None:
         self._callback[0] = func
         self._callback[1] = args
 
@@ -51,5 +52,6 @@ class Button (engine.Widget):
         else: self._is_ready = not self._is_pressed
 
     def DoCallback(self) -> None:
-        self._callback[0](self._callback[1])
+        self._callback[0](*self._callback[1])
         self._is_ready = False
+        time.sleep(0.1)

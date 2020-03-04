@@ -18,6 +18,7 @@ from engine.EntryPoint.Application      import Application
 from engine.RenderEngine.Window         import Window
 from engine.RenderEngine.SceneFactory   import SceneFactory
 from engine.RenderEngine.Scene          import Scene
+_scene_factory = SceneFactory()
 
 # Utils
 from engine.Utils.Matrix                import Matrix
