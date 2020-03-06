@@ -8,6 +8,12 @@ _current_scene    = None
 _window_width     = None
 _window_height    = None
 _window_surface   = None
+_server           = None
+_server_thread    = None
+_player           = None
+_host             = None
+_running          = True
+_type_of_connect  = None
 _events           = dict()
 
 # Entry Point
