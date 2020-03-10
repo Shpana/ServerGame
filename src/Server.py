@@ -22,7 +22,7 @@ class Server (object):
                 print(f"Connection from {_addr}.")
 
             if (len(self._clients) > 2):
-                self._clients.pop(0)    
+                self._clients.pop(0)
 
             data = pickle.loads(_data)
 

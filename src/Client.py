@@ -10,7 +10,7 @@ class Client (object):
     def __init__(self):
         self._server = (engine._host, 9090)
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self._sock.bind((engine._host, 0))
+        self._sock.connect((engine._host, 0))
         self._thread = threading.Thread(target = self.Update)
         self._thread.start()
         self.SendMessage("")

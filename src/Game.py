@@ -118,6 +118,6 @@ class Game (engine.Scene):
 
     def Quit(self) -> None:
         self.__init__()
-        if (engine._erver != None):
+        if (engine._server != None):
             engine._server._sock.close()
         engine._scene_factory.SetCurrentScene("start_menu")

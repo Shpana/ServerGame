@@ -29,7 +29,7 @@ class Matrix (list):
                     nflag = True
                     break
 
-                if (self[self.GetIndex((j + 1) % self._rows, i)] != 0):
+                if (self[self.GetIndex(j, i)] != 0):
                     rflag = True
 
             if (nflag): break
