@@ -38,7 +38,8 @@ class WaitRoom (engine.Scene):
         self._server = None
 
     def ReadyCallback(self) -> None:
-        if (engine._type_of_connect == "server"):
-            engine._server = Server(engine._host)
-            StartServer(engine._server)
+        if (engine._type_of_connect == "server" and engine._server == None):
+            server = Server(engine._host)
+            StartServer(server)
+            engine._server = server
         engine._scene_factory.SetCurrentScene("game")

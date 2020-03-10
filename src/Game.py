@@ -10,12 +10,12 @@ class Game (engine.Scene):
 
     def __init__(self):
         super().__init__()
-        self._cols  = 15
-        self._rows  = 15
-        self._scale = 30
+        self._cols  = 20
+        self._rows  = 20
+        self._scale = 20
         self._matrix = engine.Matrix(self._cols, self._rows)
         self._matrix[0] =  1
-        self._matrix[self._cols * self._rows - 1] = 2
+        self._matrix[len(self._matrix) - 1] = 2
 
         self._was_cut = False
         self._is_cutting    = False
@@ -39,20 +39,20 @@ class Game (engine.Scene):
         x = 650, y = 300, text = "Send", width = 150, height = 50)
         self._send_button.BindCallback(self.SendMessage)
 
-        self._undo_button = engine.Button(
-        x = 650, y = 400, text = "Undo", width = 150, height = 50)
-        self._undo_button.BindCallback(self.UndoCallback, [])
-
         self._settings_button = engine.Button(
-        x = 650, y = 500, width = 150, height = 50, text = "Settings")
+        x = 650, y = 400, width = 150, height = 50, text = "Settings")
         self._settings_button.BindCallback(engine._scene_factory.SetCurrentScene, ["settings_menu"])
+
+        self._quit_button = engine.Button(
+        x = 650, y = 500, width = 150, height = 50, text = "Quit")
+        self._quit_button.BindCallback(self.Quit)
 
     def Enable(self) -> None:
         self.PushObject(self._current_area_label)
         self.PushObject(self._current_player_label)
         self.PushObject(self._send_button)
         self.PushObject(self._settings_button)
-        self.PushObject(self._undo_button)
+        self.PushObject(self._quit_button)
         self._client = Client()
 
     def Update(self) -> None:
@@ -66,6 +66,9 @@ class Game (engine.Scene):
 
         self._current_area_label._text = f"Current area is {self._current_area}."
         self._current_area_label.SetTextStyle()
+
+        if (self._matrix.count(0) == 0):
+            self.GameOver()
 
     def Render(self) -> None:
         self._mesh.RenderMatrix(self._matrix)
@@ -85,29 +88,36 @@ class Game (engine.Scene):
             self._end_cut_pos = pygame.mouse.get_pos()
 
     def CutTerritory(self) -> None:
-        if (self._count_of_turns):
+        if (self._count_of_turns > 0):
             if (self._was_cut and not self._is_cutting and \
             self._mesh._in_rect and self._current_player == 1):
-                for i in range(len(self._matrix)):
-                    self._matrix_copy[i] = (self._matrix[i])
 
                 mpos = self._mesh.GetMatrixPos(self._start_cut_pos, self._end_cut_pos)
                 code = self._matrix.FillRect(*mpos, self._current_area)
-                if (code != 0): self._count_of_turns -= 1
+                print(code)
+                if (code == 1): self._count_of_turns -= 1
 
     def GameOver(self) -> None:
         # TODO: Подвести итоги
-        engine._server  = None
-        engine._player1 = None
-        engine._player2 = None
+        engine._server = None
+        engine._player = None
+        _max = max(self._matrix.count(1), self._matrix.count(2))
+        if (_max == 2):
+            print("Player 2 win. You ЛОХ!")
+        else:
+            print("НИХЕРАСИБЕ. Ты победил.")
+        engine._scene_factory.SetCurrentScene("start_menu")
 
     def SendMessage(self) -> None:
-        self._current_player = 2
-        self._count_of_turns = 0
-        self._current_player_label._text = f"{self._current_player}'s player turn."
-        self._current_player_label.SetTextStyle()
-        self._client.SendMessage([self._matrix, randint(1, 10)])
+        if (self._current_player == 1):
+            self._current_player = 2
+            self._count_of_turns = 0
+            self._current_player_label._text = f"{self._current_player}'s player turn."
+            self._current_player_label.SetTextStyle()
+            self._client.SendMessage([self._matrix, randint(1, 10)])
 
-    def UndoCallback(self):
-        for i in range(len(self._matrix_copy)):
-            self._matrix[i] = self._matrix_copy[i]
+    def Quit(self) -> None:
+        self.__init__()
+        if (engine._erver != None):
+            engine._server._sock.close()
+        engine._scene_factory.SetCurrentScene("start_menu")

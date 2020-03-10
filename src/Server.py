@@ -21,6 +21,9 @@ class Server (object):
                 self._clients.append(_addr)
                 print(f"Connection from {_addr}.")
 
+            if (len(self._clients) > 2):
+                self._clients.pop(0)    
+
             data = pickle.loads(_data)
 
             for client in self._clients:
@@ -32,5 +35,6 @@ class Server (object):
 
 def StartServer(server) -> None:
     import threading
-    engine._server_thread = threading.Thread(target = server.Run)
-    engine._server_thread.start()
+    if (engine._server == None):
+        engine._server_thread = threading.Thread(target = server.Run)
+        engine._server_thread.start()

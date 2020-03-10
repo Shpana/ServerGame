@@ -60,8 +60,8 @@ class Mesh (object):
         return ((x1, y1), (x2, y2))
 
     def RenderMatrix(self, matrix):
-        for i in range(15):
-            for j in range(15):
+        for i in range(self._cols):
+            for j in range(self._rows):
                 value = matrix[matrix.GetIndex(i, j)]
                 if (value == 1):
                     pygame.draw.rect(engine._window_surface, (150, 150, 255),

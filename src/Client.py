@@ -25,7 +25,6 @@ class Client (object):
             data = pickle.loads(_data)
             print(type(data))
             if (type(data) != list):
-                print(data)
                 continue
 
             mass = engine.Matrix(data[0]._cols, data[0]._rows)
@@ -39,4 +38,3 @@ class Client (object):
             engine._player._current_area = data[1]
             engine._player._current_player = 1
             engine._player._count_of_turns = 1
-            print(data)
