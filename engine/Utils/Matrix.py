@@ -14,8 +14,9 @@ class Matrix (list):
         x2 = max(start[0], end[0])
         y1 = min(start[1], end[1])
         y2 = max(start[1], end[1])
+        print((x2 - x1 + 1) * (y2 - y1 + 1))
         if ((x2 - x1 + 1) * (y2 - y1 + 1) != area):
-            return 0
+            return "Area"
 
         nflag = False
         rflag = False
@@ -26,16 +27,21 @@ class Matrix (list):
                     self[self.GetIndex(j, (i + 1) % self._cols)] == 1 or
                     self[self.GetIndex(j, (i - 1) % self._cols)] == 1):
                     nflag = True
+                    break
 
                 if (self[self.GetIndex((j + 1) % self._rows, i)] != 0):
                     rflag = True
 
-        if (not nflag): return 0
-        if (rflag): return 0
+            if (nflag): break
+
+        if (not nflag): return "N-flag"
+        if (rflag): return "R-flag"
 
         for i in range(x1, x2 + 1):
             for j in range(y1, y2 + 1):
                 self[self.GetIndex(j, i)] = 1
+
+        return 1
 
     def GetInfo(self) -> None:
         print("-----------------")
